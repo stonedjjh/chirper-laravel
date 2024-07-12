@@ -6,6 +6,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+/*Se establece el tipo de relacion con los chirp
+datos que un usuario puede tener varios chirp la relacion
+es 1 a n en este caso Has Many*/
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -21,6 +25,11 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+
+    public function chirps(): HasMany
+    {
+        return $this->hasMany(Chirp::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
