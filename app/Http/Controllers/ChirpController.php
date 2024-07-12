@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Chirp;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-//se agrego este llamado para poder devolver un tipo response en el index
-use Illuminate\Http\Response; 
+/*se comento ya que no se usa
+use Illuminate\Http\Response; */
+//agregamos para manejar las vistas esta linea
+use Illuminate\View\View;
 
 class ChirpController extends Controller
 {
@@ -14,10 +16,11 @@ class ChirpController extends Controller
      * Display a listing of the resource.
      */
     //
-    public function index(): Response 
+    public function index(): view 
     {
-        //
-        return response('Hello, World!');
+        //se llama a la vista
+        return view('chirps.index');
+
     }
 
     /**
