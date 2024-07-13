@@ -23,8 +23,10 @@ class ChirpController extends Controller
     //
     public function index(): view 
     {
-        //se llama a la vista
-        return view('chirps.index');
+        //se cambio el metodo y ahora busca los mensajes desde el ultimo creado hasta el primero
+        return view('chirps.index', [
+            'chirps' => Chirp::with('user')->latest()->get(),
+        ]);
 
     }
 
@@ -63,6 +65,7 @@ class ChirpController extends Controller
             'max' => 'El campo :attribute no puede ser mayor a 255 caracteres',            
         ])->validate();
  
+        //Se usa el metodo create en vez del save
         $request->user()->chirps()->create($validator);
  
         return redirect(route('chirps.index'));
